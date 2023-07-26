@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="background">
+    <file alias="background">../images/background.png</file>
+  </qresource>
+  <qresource prefix="iconos">
+    <file alias="asislock_Icon">../images/asislockIcon.ico</file>
+  </qresource>
+  <qresource prefix="logos">
+    <file alias="asislock_Logo">../images/asislockLogo.png</file>
+  </qresource>
+</RCC>
