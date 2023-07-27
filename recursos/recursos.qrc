@@ -3,6 +3,8 @@
     <file alias="background">../images/background.png</file>
   </qresource>
   <qresource prefix="iconos">
+    <file alias="error_icon">../images/error_icon.png</file>
+    <file alias="ok_icon">../images/ok_icon.png</file>
     <file alias="asislock_Icon">../images/asislockIcon.ico</file>
   </qresource>
   <qresource prefix="logos">

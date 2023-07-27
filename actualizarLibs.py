@@ -9,8 +9,8 @@ class actualizarLibs:
         self.libsLocal = r"\c$\libs"
 
         # Rango de equipos
-        self.equipoInicial = equipoInicial
-        self.equipoFinal = equipoFinal
+        self.equipoInicial = int(equipoInicial)
+        self.equipoFinal = int(equipoFinal)
 
         # Credenciales
         self.usuario = "david.lopez"
@@ -130,3 +130,21 @@ class actualizarLibs:
                 self.equiposActualizados.append(numero)
 
         return self.equiposActualizados, self.equiposError
+    
+    def limpiarLibs(self):
+        for numero in range(self.equipoInicial, self.equipoFinal + 1):
+            # Construir nombre equipo y ruta libs local
+            equipo = fr"\\EQUIPOP4-{numero}"
+            libsPath = equipo + self.libsLocal
+
+            # Conectar a equipo
+            conexion = self.conectarEquipo(equipo)
+            if not conexion:
+                self.equiposError.append(numero)
+                continue
+            
+            # Limpiar carpeta libs local
+            carpetaLimpia = self.eliminarContenidoCarpeta(libsPath)
+            if not carpetaLimpia:
+                self.equiposError.append(numero)
+                continue
