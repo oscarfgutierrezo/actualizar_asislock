@@ -104,20 +104,13 @@ class actualizarLibs:
     def actualizarEquipos(self):
         for numero in range(self.equipoInicial, self.equipoFinal + 1):
             # Construir nombre equipo y ruta libs local
-            equipo = fr"\\EQUIPOP4-{numero}"
-            libsPath = equipo + self.libsLocal
+            equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
 
             # Conectar a equipo
             conexion = self.conectarEquipo(equipo)
             if not conexion:
                 self.equiposError.append(numero)
                 continue
-            
-            # Limpiar carpeta libs local
-            #carpetaLimpia = self.eliminarContenidoCarpeta(libsPath)
-            #if not carpetaLimpia:
-            #    self.equiposError.append(numero)
-            #    continue
 
             # Copiar Archivos
             for archivo in self.archivosCopiar:
@@ -134,7 +127,7 @@ class actualizarLibs:
     def limpiarLibs(self):
         for numero in range(self.equipoInicial, self.equipoFinal + 1):
             # Construir nombre equipo y ruta libs local
-            equipo = fr"\\EQUIPOP4-{numero}"
+            equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
             libsPath = equipo + self.libsLocal
 
             # Conectar a equipo
