@@ -31,7 +31,7 @@ class Menu(QMainWindow):
         self.limpiarLibs_check.stateChanged.connect(self.programasToggle)
 
         # Check buttons de programas con nombres
-        self.checkboxs = {
+        self.checkboxes = {
             self.asislock_check: 'asislock',
             self.desktop_check: 'asislockDesktop',
             self.chrome_check: 'chromeDriver',
@@ -43,9 +43,28 @@ class Menu(QMainWindow):
         # Programas seleccionadas
         self.programas = []
 
+        # Operador seleccionado
+        self.operador = "claro"
+
+        # Radio buttons operador
+        self.claro_btn.clicked.connect(self.updateOperador)
+        self.wom_btn.clicked.connect(self.updateOperador)
+
+    def updateOperador(self):
+        if self.claro_btn.isChecked():
+            self.operador = "claro"
+            self.edge_check.setEnabled(True)
+            self.explorer_check.setEnabled(True)
+            self.rr_check.setEnabled(True)
+        elif self.wom_btn.isChecked():
+            self.operador = "wom"
+            self.edge_check.setEnabled(False)
+            self.explorer_check.setEnabled(False)
+            self.rr_check.setEnabled(False)
+
     # Agregar programas a lista en funcion de estado de checkbox
     def onCheckBoxChange(self):
-        self.programas = [self.checkboxs[checkbox] for checkbox in self.checkboxs if checkbox.isChecked()]
+        self.programas = [self.checkboxes[checkbox] for checkbox in self.checkboxes if ( checkbox.isChecked() and checkbox.isEnabled() )]
 
     def validarFormulario(self):
         # Capturar datos del formulario
@@ -79,24 +98,23 @@ class Menu(QMainWindow):
         self.formMessages.setText('Actualizando equipos. Por favor no cierre el programa')
         QApplication.processEvents()
 
-        # Limpiar libs en funcion de check
+        # Limpiar libs en funcion de check seleccionado
         if self.limpiarLibs_check.isChecked():
             self.limpiarLibs()
 
         # Actualizar libs
         self.actualizarEquipos()
-
         self.limpiarFormulario()
 
     def actualizarEquipos(self):
-        actualizador = actualizarLibs(self.rangoMin, self.rangoMax, self.programas)
+        actualizador = actualizarLibs(self.rangoMin, self.rangoMax, self.programas, self.operador)
         equipos_actualizados, equipos_error = actualizador.actualizarEquipos()
         # Mostrar Resultados
         self.reporte = Reporte(equipos_actualizados, equipos_error)
         self.reporte.show()
 
     def limpiarLibs(self):
-        actualizador = actualizarLibs(self.rangoMin, self.rangoMax, self.programas)
+        actualizador = actualizarLibs(self.rangoMin, self.rangoMax, self.programas, self.operador)
         actualizador.limpiarLibs()
 
     def limpiarMensaje(self):
@@ -116,10 +134,12 @@ class Menu(QMainWindow):
 
     # Deseleccionar todos los check de programas
     def limpiarCheckboxes(self):
-        for checkbox in self.checkboxs:
+        for checkbox in self.checkboxes:
             checkbox.setChecked(False)
 
     # Seleccionar todos los check de programas
     def todosCheckboxes(self):
-        for checkbox in self.checkboxs:
+        for checkbox in self.checkboxes:
             checkbox.setChecked(True)
+            
+            

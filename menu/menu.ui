@@ -7,19 +7,25 @@
     <x>0</x>
     <y>0</y>
     <width>450</width>
-    <height>660</height>
+    <height>700</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
   <property name="minimumSize">
    <size>
     <width>450</width>
-    <height>660</height>
+    <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>450</width>
-    <height>660</height>
+    <height>700</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -80,7 +86,7 @@ background-image: url(:/background/background);
      <widget class="QFrame" name="form">
       <property name="styleSheet">
        <string notr="true">QLineEdit {
-padding: 8px;
+padding: 6px;
 background-color: rgba(255, 255, 255, 30%);
 border-radius: 16px;
 font: 12pt &quot;Arial&quot;;
@@ -96,6 +102,11 @@ font: 14pt &quot;Arial&quot;;
 color: rgb(255, 255, 255);
 }
 
+QCheckBox[enabled=&quot;false&quot;] {
+font: 14pt &quot;Arial&quot;;
+color: rgba(255, 255, 255, 30%);
+}
+
 QPushButton {
 padding: 10px;
 background-color: rgba(255, 255, 255, 30%);
@@ -107,6 +118,11 @@ color: rgb(255, 255, 255);
 
 QPushButton:hover {
 background-color: rgba(0, 0, 0, 30%);
+}
+
+QRadioButton {
+font: 14pt &quot;Arial&quot;;
+color: rgb(255, 255, 255);
 }</string>
       </property>
       <property name="frameShape">
@@ -117,7 +133,7 @@ background-color: rgba(0, 0, 0, 30%);
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <property name="spacing">
-        <number>30</number>
+        <number>20</number>
        </property>
        <property name="leftMargin">
         <number>0</number>
@@ -131,6 +147,102 @@ background-color: rgba(0, 0, 0, 30%);
        <property name="bottomMargin">
         <number>0</number>
        </property>
+       <item>
+        <widget class="QFrame" name="operadores">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="operadoresTitulo">
+            <property name="styleSheet">
+             <string notr="true">font: 22pt &quot;Arial&quot;;</string>
+            </property>
+            <property name="text">
+             <string>Operador</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="operadoresOpciones">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_5">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QRadioButton" name="claro_btn">
+               <property name="text">
+                <string>Claro</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QRadioButton" name="wom_btn">
+               <property name="text">
+                <string>Wom</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
        <item>
         <widget class="QFrame" name="equipos">
          <property name="sizePolicy">
@@ -163,10 +275,16 @@ background-color: rgba(0, 0, 0, 30%);
           </property>
           <item>
            <widget class="QLabel" name="equiposTitulo">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>0</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -176,7 +294,7 @@ background-color: rgba(0, 0, 0, 30%);
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">font: 24pt &quot;Arial&quot;;
+             <string notr="true">font: 22pt &quot;Arial&quot;;
 color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
@@ -200,6 +318,9 @@ color: rgb(255, 255, 255);</string>
               <number>20</number>
              </property>
              <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
               <number>0</number>
              </property>
              <property name="rightMargin">
@@ -386,7 +507,7 @@ color: rgb(255, 255, 255);</string>
           <item>
            <widget class="QLabel" name="programasTitulo">
             <property name="styleSheet">
-             <string notr="true">font: 24pt &quot;Arial&quot;;
+             <string notr="true">font: 22pt &quot;Arial&quot;;
 color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
@@ -398,7 +519,7 @@ color: rgb(255, 255, 255);</string>
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="opciones">
+           <widget class="QFrame" name="programasOpciones">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
               <horstretch>0</horstretch>
@@ -535,7 +656,7 @@ color: rgb(255, 255, 255);</string>
          </layout>
         </widget>
        </item>
-       <item>
+       <item alignment="Qt::AlignHCenter">
         <widget class="QCheckBox" name="limpiarLibs_check">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">

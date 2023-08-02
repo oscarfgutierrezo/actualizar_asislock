@@ -3,9 +3,12 @@ import shutil
 import os
 
 class actualizarLibs:
-    def __init__(self, equipoInicial, equipoFinal, programas):
+    def __init__(self, equipoInicial, equipoFinal, programas, operador):
         # Paths
-        self.libsCompartida = r"\\10.255.255.10\tecnologia\COMUN\DESARROLLO\asislock\Despliegue\libs"
+        if operador == "claro":
+            self.libsCompartida = r"\\10.255.255.10\tecnologia\COMUN\DESARROLLO\asislock\Despliegue\libs"
+        elif operador == "wom":
+            self.libsCompartida = r"\\10.255.253.10\tecnologia\COMUN\Desarrollo\asislockWom\Despliegue\libs"
         self.libsLocal = r"\c$\libs"
 
         # Rango de equipos
@@ -14,12 +17,23 @@ class actualizarLibs:
 
         # Credenciales
         self.usuario = "david.lopez"
-        self.usuarioDominio = "ASISTEBOG\david.lopez"
-        self.password = "23Falcon23*"
+        if operador == "claro":
+            self.usuarioDominio = "ASISTEBOG\david.lopez"
+            self.password = "23Falcon23*"
+        elif operador == "wom":
+            self.usuarioDominio = "ASISTEING\david.lopez"
+            self.password = "21Falcon21"
+
+        # Operador
+        self.operador = operador
 
         # Archivos
-        self.asislock = r"\app.exe"
-        self.asislockDesktop = r"\asislock.exe"
+        if operador == "claro":
+            self.asislock = r"\app.exe"
+            self.asislockDesktop = r"\asislock.exe"
+        elif operador == "wom":
+            self.asislock = r"\appWom.exe"
+            self.asislockDesktop = r"\asislock-wom.exe"
         self.chromeDriver = r"\chromedriver.exe"
         self.explorerDriver = r"\IEDriverServer.exe"
         self.edgeDriver = r"\msedgedriver.exe"
@@ -103,8 +117,11 @@ class actualizarLibs:
     
     def actualizarEquipos(self):
         for numero in range(self.equipoInicial, self.equipoFinal + 1):
-            # Construir nombre equipo y ruta libs local
-            equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
+            # Construir nombre equipo
+            if self.operador == "claro":
+                equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
+            elif self.operador == "wom":
+                equipo = fr"\\EQUIPOP3-{numero}.ASISTEBOG.local"
 
             # Conectar a equipo
             conexion = self.conectarEquipo(equipo)
@@ -127,7 +144,11 @@ class actualizarLibs:
     def limpiarLibs(self):
         for numero in range(self.equipoInicial, self.equipoFinal + 1):
             # Construir nombre equipo y ruta libs local
-            equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
+            if self.operador == "claro":
+                equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
+            elif self.operador == "wom":
+                equipo = fr"\\EQUIPOP3-{numero}.ASISTEBOG.local"
+            
             libsPath = equipo + self.libsLocal
 
             # Conectar a equipo
