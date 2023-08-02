@@ -19,7 +19,7 @@ class Menu(QMainWindow):
         loadUi(menu, self)
 
         # Limitar los inputs de equipos a 3 caracteres numéricos
-        rx  = QRegExp("[0-9]{3}")
+        rx  = QRegExp("[0-9]{4}")
         val = QRegExpValidator(rx)
         self.rangoMin_Input.setValidator(val)
         self.rangoMax_Input.setValidator(val)
