@@ -559,7 +559,7 @@ color: rgb(255, 255, 255);</string>
           <string notr="true">font: 14pt &quot;Arial&quot;;</string>
          </property>
          <property name="text">
-          <string>Limpiar la carpeta libs antes de la instalación</string>
+          <string>Limpiar carpeta libs antes de la actualización</string>
          </property>
         </widget>
        </item>
