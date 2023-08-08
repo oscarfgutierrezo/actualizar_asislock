@@ -65,11 +65,13 @@ class actualizarLibs:
             comando_net_use = f"net use {equipo} /user:{self.usuario} {self.password}"
             subprocess.run(comando_net_use, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         except subprocess.CalledProcessError:
+            print("Problema en conexion")
             # Conexion con credenciales con dominio
             try:
                 comando_net_use = f"net use {equipo} /user:{self.usuarioDominio} {self.password}"
                 subprocess.run(comando_net_use, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
             except subprocess.CalledProcessError:
+                print("Problema en conexion")
                 return False
         
         return True
@@ -79,8 +81,10 @@ class actualizarLibs:
             os.remove(archivo)
             return True
         except PermissionError:
+            print("Problema en eliminar archivos")
             return False
         except OSError:
+            print("Problema en eliminar archivos")
             return False
         
     def eliminarContenidoCarpeta(self, carpeta):
@@ -97,6 +101,7 @@ class actualizarLibs:
                 if not archivoEliminado:
                     return False
                 try:
+                    print("Problema en eliminar archivos de carpeta")
                     os.rmdir(rutaArchivo)
                 except OSError as e:
                     return False
@@ -111,8 +116,10 @@ class actualizarLibs:
             shutil.copy(origenPath, destinoPath)
             return True
         except FileNotFoundError:
+            print("Problema en copiar archivos")
             return False
         except PermissionError:
+            print("Problema en copiar archivos")
             return False
     
     def actualizarEquipos(self):
@@ -121,7 +128,7 @@ class actualizarLibs:
             if self.operador == "claro":
                 equipo = fr"\\EQUIPOP4-{numero}.ASISTEBOG.local"
             elif self.operador == "wom":
-                equipo = fr"\\EQUIPOP3-{numero}.ASISTEBOG.local"
+                equipo = fr"\\EQUIPOP3-{numero}.ASISTEING.local"
 
             # Conectar a equipo
             conexion = self.conectarEquipo(equipo)
